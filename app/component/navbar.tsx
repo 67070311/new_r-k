@@ -23,12 +23,7 @@ const deviceItems = [
   { label: "VT200-L", href: "/prodeuct-service/VT200-L" },
 ];
 
-type MenuItem = {
-  label: string;
-  href: string;
-};
-
-const trackingItems: MenuItem[] = [
+const trackingItems = [
   {
     label: "GPS ติดตามรถ Real Time",
     href: "/prodeuct-service/car-program/real-time",
@@ -150,7 +145,7 @@ export default function Navbar() {
               </div>
 
               <Link
-                href="/after-sale"
+                href="/prodeuct-service/after-sale"
                 className="flex items-center gap-3 rounded-xl px-4 py-3 text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
               >
                 <Headphones size={20} />
