@@ -27,56 +27,10 @@ const deviceItems = [
   { label: "VT200-L", href: "/prodeuct-service/VT200-L" },
 ];
 
-type MenuItem = {
-  label: string;
-  href: string;
-  children?: MenuItem[];
-};
-
-const trackingItems: MenuItem[] = [
+const trackingItems = [
   {
     label: "GPS ติดตามรถ Real Time",
     href: "/prodeuct-service/car-program/real-time",
-  },
-  {
-    label: "GPS ติดตามรถ ไม่มีรายเดือน",
-    href: "/prodeuct-service/car-program/no-month",
-  },
-  {
-    label: "GPS ติดตามรถ ตาม Function การใช้งาน",
-    href: "/prodeuct-service/car-program/function",
-    children: [
-      {
-        label: "GPS Tracking ติดตามรถยนต์ทั่วไป",
-        href: "/prodeuct-service/car-program/function/tracking1",
-      },
-      {
-        label: "GPS Tracking ติดตามรถ Sensor ปริมาณน้ำมัน",
-        href: "/prodeuct-service/car-program/function/tracking2",
-      },
-    ],
-  },
-  {
-    label: "GPS Tracking ติดตามรถยนต์ทั่วไป",
-    href: "/prodeuct-service/car-program/tracking",
-    children: [
-      {
-        label: "GPS ติดตามรถขนส่ง",
-        href: "/prodeuct-service/car-program/tracking/gps1",
-      },
-      {
-        label: "GPS Tracker ติดตามรถเช่า รถ Taxi",
-        href: "/prodeuct-service/car-program/tracking/gps2",
-      },
-      {
-        label: "GPS Tracker ติดตามรถมอเตอร์ไซค์",
-        href: "/prodeuct-service/car-program/tracking/gps3",
-      },
-    ],
-  },
-  {
-    label: "Tracking Server",
-    href: "/prodeuct-service/car-program/tracking-sever",
   },
 ];
 
@@ -105,9 +59,6 @@ export default function NavbarMobile() {
   const [deviceOpen, setDeviceOpen] = useState(false);
   const [trackingOpen, setTrackingOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
-  const [openTrackingChildren, setOpenTrackingChildren] = useState<
-    Record<string, boolean>
-  >({});
 
   const closeMenu = () => {
     setOpen(false);
@@ -116,14 +67,6 @@ export default function NavbarMobile() {
     setDeviceOpen(false);
     setTrackingOpen(false);
     setLoginOpen(false);
-    setOpenTrackingChildren({});
-  };
-
-  const toggleTrackingChild = (href: string) => {
-    setOpenTrackingChildren((prev) => ({
-      ...prev,
-      [href]: !prev[href],
-    }));
   };
 
   return (
@@ -259,54 +202,20 @@ export default function NavbarMobile() {
                   {trackingOpen && (
                     <div className="ml-6 space-y-1">
                       {trackingItems.map((item) => (
-                        <div key={item.href}>
-                          <div className="flex items-center gap-2">
-                            <Link
-                              href={item.href}
-                              onClick={closeMenu}
-                              className="min-w-0 flex-1 rounded-lg px-4 py-2.5 text-[14px] font-normal text-gray-600 transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
-                            >
-                              {item.label}
-                            </Link>
-
-                            {item.children ? (
-                              <button
-                                type="button"
-                                onClick={() => toggleTrackingChild(item.href)}
-                                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-gray-500 transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
-                              >
-                                <ChevronDown
-                                  className={`h-4 w-4 transition ${
-                                    openTrackingChildren[item.href]
-                                      ? "rotate-180"
-                                      : ""
-                                  }`}
-                                />
-                              </button>
-                            ) : null}
-                          </div>
-
-                          {item.children && openTrackingChildren[item.href] ? (
-                            <div className="ml-4 space-y-1 border-l border-gray-100 pl-3">
-                              {item.children.map((child) => (
-                                <Link
-                                  key={child.href}
-                                  href={child.href}
-                                  onClick={closeMenu}
-                                  className="block rounded-lg px-4 py-2.5 text-[13px] font-normal leading-6 text-gray-500 transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
-                                >
-                                  {child.label}
-                                </Link>
-                              ))}
-                            </div>
-                          ) : null}
-                        </div>
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          onClick={closeMenu}
+                          className="block rounded-lg px-4 py-2.5 text-[14px] font-normal text-gray-600 transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
+                        >
+                          {item.label}
+                        </Link>
                       ))}
                     </div>
                   )}
 
                   <Link
-                    href="/after-sale"
+                    href="/prodeuct-service/after-sale"
                     onClick={closeMenu}
                     className="flex items-center gap-3 rounded-xl px-4 py-3 text-[15px] font-normal transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
                   >
