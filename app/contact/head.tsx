@@ -24,7 +24,7 @@ export default function ContactHead() {
             <div className="flex items-center gap-4">
               <Mail className="h-7 w-7 text-[#222]" />
               <span className="text-[18px] text-[#222]">
-                info@r-ktechnology.com
+                info@r-ktechnologygps.com
               </span>
             </div>
 

@@ -69,25 +69,25 @@ const reportItems = [
 ];
 
 const desktopScreens = [
-  { title: "หน้าจอคอมพิวเตอร์ 1", image: "/product/real-time/1.png" },
-  { title: "หน้าจอคอมพิวเตอร์ 2", image: "/product/real-time/2.png" },
-  { title: "หน้าจอคอมพิวเตอร์ 3", image: "/product/real-time/3.png" },
-  { title: "หน้าจอคอมพิวเตอร์ 4", image: "/product/real-time/4.png" },
-  { title: "หน้าจอคอมพิวเตอร์ 5", image: "/product/real-time/5.png" },
-  { title: "หน้าจอคอมพิวเตอร์ 6", image: "/product/real-time/6.png" },
+  "/product/real-time/1.png",
+  "/product/real-time/2.png",
+  "/product/real-time/3.png",
+  "/product/real-time/4.png",
+  "/product/real-time/5.png",
+  "/product/real-time/6.png",
 ];
 
 const mobileScreens = [
-  { title: "หน้าจอโทรศัพท์ 1", image: "/product/real-time/phone/1.png" },
-  { title: "หน้าจอโทรศัพท์ 2", image: "/product/real-time/phone/2.png" },
-  { title: "หน้าจอโทรศัพท์ 3", image: "/product/real-time/phone/3.png" },
-  { title: "หน้าจอโทรศัพท์ 4", image: "/product/real-time/phone/4.png" },
-  { title: "หน้าจอโทรศัพท์ 5", image: "/product/real-time/phone/5.png" },
-  { title: "หน้าจอโทรศัพท์ 6", image: "/product/real-time/phone/6.png" },
-  { title: "หน้าจอโทรศัพท์ 7", image: "/product/real-time/phone/7.png" },
-  { title: "หน้าจอโทรศัพท์ 8", image: "/product/real-time/phone/8.png" },
-  { title: "หน้าจอโทรศัพท์ 9", image: "/product/real-time/phone/9.png" },
-  { title: "หน้าจอโทรศัพท์ 10", image: "/product/real-time/phone/10.png" },
+  "/product/real-time/phone/1.png",
+  "/product/real-time/phone/2.png",
+  "/product/real-time/phone/3.png",
+  "/product/real-time/phone/4.png",
+  "/product/real-time/phone/5.png",
+  "/product/real-time/phone/6.png",
+  "/product/real-time/phone/7.png",
+  "/product/real-time/phone/8.png",
+  "/product/real-time/phone/9.png",
+  "/product/real-time/phone/10.png",
 ];
 
 const highlights = [
@@ -132,7 +132,7 @@ export default function RealTimePage() {
             className="overflow-hidden rounded-xl bg-[#F7F8FA]"
           >
             <Image
-              src="/product/car/real-time/main.png"
+              src="/product/real-time/head.png"
               alt="GPS Tracking Real Time"
               width={650}
               height={430}
@@ -364,9 +364,9 @@ function ScreenshotSection() {
 
       <ScreenGroup
         icon={Monitor}
-        title="รูปแบบในคอมพิวเตอร์"
-        desc="หน้าจอระบบ Tracking Server สำหรับใช้งานผ่านคอมพิวเตอร์"
-        items={desktopScreens}
+        title="ในคอมพิวเตอร์"
+        desc="ระบบ Tracking Server สำหรับติดตามรถ ตรวจสอบตำแหน่ง ดูเส้นทางย้อนหลัง และเรียกดูรายงานผ่านหน้าจอคอมพิวเตอร์"
+        images={desktopScreens}
         type="desktop"
       />
 
@@ -374,9 +374,9 @@ function ScreenshotSection() {
 
       <ScreenGroup
         icon={Smartphone}
-        title="รูปแบบโทรศัพท์"
-        desc="ระบบสามารถใช้งานผ่านแอป RKTRACK บนโทรศัพท์มือถือ เพื่อติดตามตำแหน่งรถ ดูสถานะรถ เส้นทางย้อนหลัง และข้อมูลสำคัญได้สะดวกทุกที่"
-        items={mobileScreens}
+        title="ในโทรศัพท์"
+        desc="ใช้งานผ่านแอป RKTRACK บนโทรศัพท์มือถือ เพื่อติดตามตำแหน่งรถ ดูสถานะรถ เส้นทางย้อนหลัง และข้อมูลสำคัญได้สะดวกทุกที่"
+        images={mobileScreens}
         type="mobile"
         className="mt-10"
       />
@@ -397,7 +397,7 @@ function AppIntroSection() {
       <div className="grid items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="mx-auto w-full max-w-[320px] overflow-hidden rounded-[32px] bg-[#F7F8FA] p-4 sm:max-w-[360px]">
           <Image
-            src="/product/real-time/phone/app.png"
+            src="/product/real-time/app/app.png"
             alt="RKTRACK App"
             width={360}
             height={720}
@@ -446,17 +446,14 @@ function ScreenGroup({
   icon: Icon,
   title,
   desc,
-  items,
+  images,
   type,
   className = "",
 }: {
   icon: typeof Monitor;
   title: string;
   desc: string;
-  items: {
-    title: string;
-    image: string;
-  }[];
+  images: string[];
   type: "desktop" | "mobile";
   className?: string;
 }) {
@@ -492,9 +489,9 @@ function ScreenGroup({
             : "grid-cols-2 md:grid-cols-3 xl:grid-cols-5"
         }`}
       >
-        {items.map((item, index) => (
+        {images.map((image, index) => (
           <motion.div
-            key={item.title}
+            key={image}
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
@@ -504,16 +501,16 @@ function ScreenGroup({
               ease: "easeOut",
               delay: index * 0.04,
             }}
-            className="overflow-hidden rounded-2xl border border-dashed border-neutral-300 bg-[#F7F8FA]"
+            className="overflow-hidden rounded-2xl border border-dashed border-neutral-300 bg-white"
           >
             <div
-              className={`relative bg-white ${
+              className={`relative ${
                 type === "desktop" ? "aspect-[16/9]" : "aspect-[9/16]"
               }`}
             >
               <Image
-                src={item.image}
-                alt={item.title}
+                src={image}
+                alt={`${title} ${index + 1}`}
                 fill
                 sizes={
                   type === "desktop"
@@ -522,12 +519,6 @@ function ScreenGroup({
                 }
                 className="object-cover"
               />
-            </div>
-
-            <div className="px-3 py-3 sm:px-4 sm:py-4">
-              <p className="text-center text-[12px] font-bold leading-5 text-[#ED002B] sm:text-[16px] sm:leading-6">
-                {item.title}
-              </p>
             </div>
           </motion.div>
         ))}

@@ -23,7 +23,7 @@ export default function Quotation() {
           <div className="mt-8 space-y-5 text-[15px] text-black sm:text-[17px] lg:text-[18px]">
             <div className="flex items-center gap-4 sm:gap-5">
               <Mail className="h-5 w-5 shrink-0 stroke-[2] sm:h-6 sm:w-6" />
-              <span className="break-all">info@r-ktechnology.com</span>
+              <span className="break-all">info@r-ktechnologygps.com</span>
             </div>
 
             <div className="flex items-center gap-4 sm:gap-5">

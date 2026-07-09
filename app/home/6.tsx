@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 
 const allImages = Array.from({ length: 70 }, (_, index) => ({
   src: `/about/image/${index + 1}.webp`,
-  alt: `ผลงานติดตั้ง GPS ${index + 1}`,
+  alt: `ผลงานบางส่วนของเรา ${index + 1}`,
 }));
 
 const slots = [
@@ -36,21 +36,19 @@ export default function HomeGallerySection() {
   }, []);
 
   return (
-    <section className="bg-white px-4 py-12 sm:px-6 lg:px-20 lg:py-20">
-      {/* Header */}
-      <div className="mx-auto mb-10 max-w-4xl text-center">
-        <h2 className="text-2xl font-bold text-black sm:text-3xl lg:text-4xl">
-          ผลงานติดตั้ง GPS ของเรา
+    <section className="bg-white px-4 py-10 sm:px-6 lg:px-20 lg:py-16">
+      <div className="mx-auto mb-7 max-w-3xl text-center">
+        <h2 className="text-lg font-bold leading-tight text-black sm:text-xl lg:text-2xl">
+          ผลงานบางส่วนของเรา
         </h2>
 
-        <p className="mt-3 text-base font-medium leading-relaxed text-gray-700 sm:text-lg lg:text-xl">
-          ติดตั้งจริงโดยทีมงานมืออาชีพ รองรับรถทุกประเภท
+        <p className="mt-2 text-xs font-medium leading-relaxed text-black sm:text-sm lg:text-base">
+          ภาพบรรยากาศการติดตั้งและบริการจากทีมงานของเรา
         </p>
 
-        <div className="mx-auto mt-6 h-1 w-24 rounded-full bg-[#ED002B]" />
+        <div className="mx-auto mt-4 h-[3px] w-16 rounded-full bg-[#ED002B]" />
       </div>
 
-      {/* Gallery */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -89,8 +87,8 @@ export default function HomeGallerySection() {
                     src={image.src}
                     alt={image.alt}
                     fill
-                    className="object-cover transition-transform duration-700 hover:scale-105"
                     sizes="(max-width:768px) 33vw, 33vw"
+                    className="object-cover transition-transform duration-700 hover:scale-105"
                   />
                 </motion.div>
               </AnimatePresence>
