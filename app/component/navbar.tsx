@@ -26,53 +26,12 @@ const deviceItems = [
 type MenuItem = {
   label: string;
   href: string;
-  children?: MenuItem[];
 };
 
 const trackingItems: MenuItem[] = [
   {
     label: "GPS ติดตามรถ Real Time",
     href: "/prodeuct-service/car-program/real-time",
-  },
-  {
-    label: "GPS ติดตามรถ ไม่มีรายเดือน",
-    href: "/prodeuct-service/car-program/no-month",
-  },
-  {
-    label: "GPS ติดตามรถ ตาม Function การใช้งาน",
-    href: "/prodeuct-service/car-program/function",
-    children: [
-      {
-        label: "GPS Tracking ติดตามรถยนต์ทั่วไป",
-        href: "/prodeuct-service/car-program/function/tracking1",
-      },
-      {
-        label: "GPS Tracking ติดตามรถ Sensor ปริมาณน้ำมัน",
-        href: "/prodeuct-service/car-program/function/tracking2",
-      },
-    ],
-  },
-  {
-    label: "GPS Tracking ติดตามรถยนต์ทั่วไป",
-    href: "/prodeuct-service/car-program/tracking",
-    children: [
-      {
-        label: "GPS ติดตามรถขนส่ง",
-        href: "/prodeuct-service/car-program/tracking/gps1",
-      },
-      {
-        label: "GPS Tracker ติดตามรถเช่า รถ Taxi",
-        href: "/prodeuct-service/car-program/tracking/gps2",
-      },
-      {
-        label: "GPS Tracker ติดตามรถมอเตอร์ไซค์",
-        href: "/prodeuct-service/car-program/tracking/gps3",
-      },
-    ],
-  },
-  {
-    label: "Tracking Server",
-    href: "/prodeuct-service/car-program/tracking-sever",
   },
 ];
 
@@ -179,31 +138,13 @@ export default function Navbar() {
 
                 <div className="invisible absolute left-full top-0 ml-3 w-[390px] rounded-2xl bg-white p-4 text-black opacity-0 shadow-xl transition-all duration-200 group-hover/tracking:visible group-hover/tracking:opacity-100">
                   {trackingItems.map((item) => (
-                    <div key={item.href} className="group/sub relative">
-                      <Link
-                        href={item.href}
-                        className="flex items-center justify-between rounded-xl px-4 py-3 text-[14px] text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
-                      >
-                        <span>{item.label}</span>
-                        {item.children ? (
-                          <ChevronRight size={16} className="shrink-0" />
-                        ) : null}
-                      </Link>
-
-                      {item.children ? (
-                        <div className="invisible absolute right-full top-0 mr-3 w-[390px] rounded-2xl bg-white p-3 text-black opacity-0 shadow-xl transition-all duration-200 group-hover/sub:visible group-hover/sub:opacity-100">
-                          {item.children.map((child) => (
-                            <Link
-                              key={child.href}
-                              href={child.href}
-                              className="block rounded-xl px-4 py-3 text-[14px] text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
-                            >
-                              {child.label}
-                            </Link>
-                          ))}
-                        </div>
-                      ) : null}
-                    </div>
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="block rounded-xl px-4 py-3 text-[14px] text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
+                    >
+                      {item.label}
+                    </Link>
                   ))}
                 </div>
               </div>

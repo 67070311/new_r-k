@@ -1,15 +1,15 @@
 "use client";
 
 import { CheckCircle, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const products = [
+  { image: "/home/5/6.png", name: "VT200-L", desc: "" },
+  { image: "/home/5/4.png", name: "VL802", desc: "" },
   { image: "/home/5/1.png", name: "GT06E", desc: "รองรับซิมการ์ด 3G" },
   { image: "/home/5/2.png", name: "TS107 3G", desc: "พร้อมเครื่องรูดบัตร" },
   { image: "/home/5/3.png", name: "FIFOTRACK", desc: "Model: S50K" },
-  { image: "/home/5/4.png", name: "VL802", desc: "" },
   { image: "/home/5/5.png", name: "VT100-L", desc: "" },
-  { image: "/home/5/6.png", name: "VT200-L", desc: "" },
 ];
 
 const features = ["ติดตามแม่นยำ", "ประหยัดพลังงาน", "ติดตั้งได้กับรถทุกประเภท"];
@@ -31,6 +31,14 @@ export default function Section5() {
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 2 < 0 ? products.length - 2 : prev - 2));
   };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const visibleProducts = [
     products[currentIndex],
