@@ -145,13 +145,6 @@ export default function Navbar() {
           </Link>
 
           <Link
-            href="/faq"
-            className="text-black transition hover:text-[#108C2E]"
-          >
-            ถามตอบ
-          </Link>
-
-          <Link
             href="/contact"
             className="text-black transition hover:text-[#108C2E]"
           >

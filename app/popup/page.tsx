@@ -1,213 +1,241 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Mail, Phone, X } from "lucide-react";
 import { FaFacebookMessenger, FaLine } from "react-icons/fa6";
-import TelPopup from "./tel";
-import LinePopup from "./line";
 
-const contactItems = [
-  {
-    title: "Messenger",
-    href: "https://m.me/USERNAME",
-    color: "bg-[#1687F8]",
-    icon: <FaFacebookMessenger className="text-[27px] sm:text-[30px]" />,
-    external: true,
-    type: "link",
-  },
-  {
-    title: "LINE",
-    href: "",
-    color: "bg-[#06C755]",
-    icon: <FaLine className="text-[27px] sm:text-[30px]" />,
-    external: false,
-    type: "line-popup",
-  },
-  {
-    title: "Email",
-    href: "mailto:info@r-ktechnologygps.com",
-    color: "bg-[#FF7A17]",
-    icon: <Mail size={24} strokeWidth={2} />,
-    external: false,
-    type: "link",
-  },
-  {
-    title: "โทรหาเรา",
-    href: "",
-    color: "bg-[#17B6AF]",
-    icon: <Phone size={24} strokeWidth={2} />,
-    external: false,
-    type: "tel-popup",
-  },
-];
+import EmailPopup from "./email";
+import LinePopup from "./line";
+import TelPopup from "./tel";
+
+type PopupType = "line" | "email" | "tel" | null;
+
+type PopupContactItem = {
+  title: string;
+  color: string;
+  icon: React.ReactNode;
+  type: "popup";
+  popup: Exclude<PopupType, null>;
+};
+
+type LinkContactItem = {
+  title: string;
+  color: string;
+  icon: React.ReactNode;
+  type: "link";
+  href: string;
+};
+
+type ContactItem = PopupContactItem | LinkContactItem;
 
 export default function PopupPage() {
-  const [open, setOpen] = useState(false);
-  const [telOpen, setTelOpen] = useState(false);
-  const [lineOpen, setLineOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activePopup, setActivePopup] = useState<PopupType>(null);
 
-  const handleTelOpen = () => {
-    setOpen(false);
-    setTelOpen(true);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const contactItems: ContactItem[] = [
+    {
+      title: "Messenger",
+      color: "bg-[#1687F8]",
+      icon: <FaFacebookMessenger className="text-[23px] sm:text-[28px]" />,
+      type: "link",
+      href: "https://m.me/USERNAME",
+    },
+    {
+      title: "LINE",
+      color: "bg-[#06C755]",
+      icon: <FaLine className="text-[23px] sm:text-[28px]" />,
+      type: "popup",
+      popup: "line",
+    },
+    {
+      title: "Email",
+      color: "bg-[#F97316]",
+      icon: (
+        <Mail size={21} strokeWidth={2} className="sm:h-[24px] sm:w-[24px]" />
+      ),
+      type: "popup",
+      popup: "email",
+    },
+    {
+      title: "โทรหาเรา",
+      color: "bg-[#17B6AF]",
+      icon: (
+        <Phone size={21} strokeWidth={2} className="sm:h-[24px] sm:w-[24px]" />
+      ),
+      type: "popup",
+      popup: "tel",
+    },
+  ];
+
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) {
+        clearTimeout(closeTimerRef.current);
+      }
+    };
+  }, []);
+
+  const clearCloseTimer = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
   };
 
-  const handleLineOpen = () => {
-    setOpen(false);
-    setLineOpen(true);
+  const handleMouseEnter = () => {
+    clearCloseTimer();
+    setMenuOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    clearCloseTimer();
+
+    closeTimerRef.current = setTimeout(() => {
+      setMenuOpen(false);
+    }, 250);
+  };
+
+  const openPopup = (popup: Exclude<PopupType, null>) => {
+    clearCloseTimer();
+    setActivePopup(popup);
+    setMenuOpen(false);
+  };
+
+  const closePopup = () => {
+    setActivePopup(null);
+  };
+
+  const toggleMenu = () => {
+    clearCloseTimer();
+    setMenuOpen((previous) => !previous);
   };
 
   return (
     <>
       <div
-        className="fixed bottom-5 right-5 z-[9999] sm:bottom-8 sm:right-8"
-        onMouseEnter={() => setOpen(true)}
-        onMouseLeave={() => setOpen(false)}
+        className="fixed bottom-5 right-4 z-[9999] sm:bottom-8 sm:right-8"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
-        {/* พื้นที่เชื่อมระหว่างปุ่มกับเมนู */}
+        {/* พื้นที่โปร่งเชื่อมระหว่างเมนูกับปุ่มหลัก */}
         <div
-          className={`absolute bottom-12 right-0 h-[390px] w-[310px] ${
-            open ? "pointer-events-auto" : "pointer-events-none"
+          aria-hidden="true"
+          className={`absolute bottom-[52px] right-0 h-[34px] w-[70px] sm:bottom-[60px] sm:h-[40px] sm:w-[82px] ${
+            menuOpen ? "pointer-events-auto" : "pointer-events-none"
           }`}
         />
 
-        {/* รายการช่องทางติดต่อ */}
+        {/* เมนูช่องทางติดต่อ */}
         <div
-          className={`absolute bottom-[80px] right-0 flex flex-col items-end gap-3 transition-all duration-300 sm:bottom-[92px] sm:gap-4 ${
-            open
+          className={`absolute bottom-[74px] right-0 flex flex-col items-end gap-3 transition-all duration-300 sm:bottom-[92px] sm:gap-4 ${
+            menuOpen
               ? "pointer-events-auto translate-y-0 opacity-100"
-              : "pointer-events-none translate-y-6 opacity-0"
+              : "pointer-events-none translate-y-4 opacity-0"
           }`}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           {contactItems.map((item, index) => {
-            const itemClassName = `group flex cursor-pointer items-center gap-3 border-0 bg-transparent p-0 transition-all duration-300 sm:gap-4 ${
-              open
-                ? "translate-y-0 scale-100 opacity-100"
-                : "translate-y-8 scale-90 opacity-0"
-            }`;
-
-            const itemStyle = {
-              transitionDelay: open
-                ? `${(contactItems.length - index - 1) * 65}ms`
-                : "0ms",
-            };
-
             const content = (
               <>
-                <div className="whitespace-nowrap rounded-full bg-white px-5 py-2.5 text-[15px] font-normal text-[#222] shadow-[0_8px_30px_rgba(0,0,0,0.14)] transition-all duration-200 group-hover:-translate-x-1 group-hover:shadow-[0_12px_35px_rgba(0,0,0,0.18)] sm:px-7 sm:py-3 sm:text-[17px]">
+                <div className="whitespace-nowrap rounded-full bg-white px-5 py-2.5 text-[14px] font-normal text-[#222222] shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-all duration-300 group-hover/item:-translate-x-1 group-hover/item:shadow-[0_14px_35px_rgba(0,0,0,0.16)] sm:px-7 sm:py-3 sm:text-[17px]">
                   {item.title}
                 </div>
 
                 <div
-                  className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-white shadow-[0_8px_25px_rgba(0,0,0,0.18)] transition-all duration-200 group-hover:-translate-y-1 group-hover:scale-110 group-hover:shadow-[0_14px_32px_rgba(0,0,0,0.24)] sm:h-16 sm:w-16 ${item.color}`}
+                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-white shadow-[0_10px_25px_rgba(0,0,0,0.16)] transition-all duration-300 group-hover/item:scale-110 group-hover/item:shadow-[0_14px_30px_rgba(0,0,0,0.22)] sm:h-16 sm:w-16 ${item.color}`}
                 >
                   {item.icon}
                 </div>
               </>
             );
 
-            if (item.type === "line-popup") {
+            if (item.type === "link") {
               return (
-                <button
+                <a
                   key={item.title}
-                  type="button"
-                  onClick={handleLineOpen}
-                  aria-label="เปิด QR Code LINE"
-                  className={itemClassName}
-                  style={itemStyle}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    clearCloseTimer();
+                    setMenuOpen(false);
+                  }}
+                  className="group/item flex items-center gap-3 outline-none sm:gap-4"
+                  style={{
+                    transitionDelay: menuOpen ? `${index * 35}ms` : "0ms",
+                  }}
                 >
                   {content}
-                </button>
-              );
-            }
-
-            if (item.type === "tel-popup") {
-              return (
-                <button
-                  key={item.title}
-                  type="button"
-                  onClick={handleTelOpen}
-                  aria-label="เปิดข้อมูลเบอร์โทรศัพท์"
-                  className={itemClassName}
-                  style={itemStyle}
-                >
-                  {content}
-                </button>
+                </a>
               );
             }
 
             return (
-              <a
+              <button
                 key={item.title}
-                href={item.href}
-                target={item.external ? "_blank" : undefined}
-                rel={item.external ? "noopener noreferrer" : undefined}
-                aria-label={item.title}
-                className={itemClassName}
-                style={itemStyle}
+                type="button"
+                onClick={() => openPopup(item.popup)}
+                className="group/item flex items-center gap-3 outline-none sm:gap-4"
+                style={{
+                  transitionDelay: menuOpen ? `${index * 35}ms` : "0ms",
+                }}
               >
                 {content}
-              </a>
+              </button>
             );
           })}
         </div>
 
-        {/* ข้อความข้างปุ่ม */}
+        {/* ข้อความลอย */}
         <div
-          className={`pointer-events-none absolute right-[72px] top-1/2 -translate-y-1/2 whitespace-nowrap transition-all duration-300 sm:right-[92px] ${
-            open
-              ? "translate-x-5 scale-95 opacity-0"
-              : "translate-x-0 scale-100 opacity-100"
+          className={`absolute right-[68px] top-1/2 -translate-y-1/2 whitespace-nowrap transition-all duration-300 sm:right-24 ${
+            menuOpen
+              ? "pointer-events-none translate-x-5 opacity-0"
+              : "translate-x-0 opacity-100"
           }`}
         >
-          <div className="rounded-full bg-white px-5 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
-            <p className="text-[14px] font-normal text-[#333] sm:text-[17px]">
-              ติดต่อเราที่นี่ได้เลยค่ะ
-            </p>
-          </div>
+          <p className="rounded-full bg-white/95 px-5 py-3 text-[14px] font-normal text-[#333333] shadow-[0_10px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm sm:px-6 sm:text-[17px]">
+            ติดต่อเราที่นี่ได้เลยค่ะ
+          </p>
         </div>
 
-        {/* แสงรอบปุ่มหลัก */}
-        <div className="pointer-events-none absolute inset-0 animate-pulse rounded-full bg-[#ED002B]/20 blur-xl" />
+        {/* แสงแดงแบบบาง */}
+        <div className="pointer-events-none absolute inset-1 animate-pulse rounded-full bg-[#ED002B]/8 blur-xl" />
 
         {/* ปุ่มหลัก */}
         <button
           type="button"
-          onClick={() => setOpen((previous) => !previous)}
-          aria-label={open ? "ปิดเมนูติดต่อ" : "เปิดเมนูติดต่อ"}
-          aria-expanded={open}
-          className={`relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-[#ED002B] text-white shadow-[0_8px_28px_rgba(237,0,43,0.32)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-[#D90027] hover:shadow-[0_14px_35px_rgba(237,0,43,0.42)] sm:h-16 sm:w-16 ${
-            open ? "-translate-y-1 scale-105" : ""
-          }`}
+          onClick={toggleMenu}
+          onFocus={handleMouseEnter}
+          aria-label={menuOpen ? "ปิดเมนูติดต่อ" : "เปิดเมนูติดต่อ"}
+          aria-expanded={menuOpen}
+          className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#ED002B] text-white shadow-[0_0_20px_rgba(237,0,43,0.22)] transition duration-300 hover:scale-105 sm:h-16 sm:w-16"
         >
-          {!open && (
-            <span className="pointer-events-none absolute inset-0 animate-[ping_2.5s_ease-out_infinite] rounded-full bg-[#ED002B]" />
+          <span className="pointer-events-none absolute inset-0 animate-[ping_3s_ease-out_infinite] rounded-full bg-[#ED002B]/10" />
+
+          {menuOpen ? (
+            <X
+              size={25}
+              strokeWidth={2}
+              className="relative z-10 sm:h-[28px] sm:w-[28px]"
+            />
+          ) : (
+            <FaFacebookMessenger className="relative z-10 text-[27px] sm:text-[30px]" />
           )}
-
-          <span
-            className={`absolute z-10 transition-all duration-300 ${
-              open
-                ? "rotate-0 scale-100 opacity-100"
-                : "rotate-90 scale-50 opacity-0"
-            }`}
-          >
-            <X size={28} strokeWidth={2.2} />
-          </span>
-
-          <span
-            className={`absolute z-10 transition-all duration-300 ${
-              open
-                ? "-rotate-90 scale-50 opacity-0"
-                : "rotate-0 scale-100 opacity-100"
-            }`}
-          >
-            <FaFacebookMessenger className="text-[27px] sm:text-[30px]" />
-          </span>
         </button>
       </div>
 
-      <LinePopup open={lineOpen} onClose={() => setLineOpen(false)} />
+      {/* Popup LINE */}
+      <LinePopup open={activePopup === "line"} onClose={closePopup} />
 
-      <TelPopup open={telOpen} onClose={() => setTelOpen(false)} />
+      {/* Popup Email */}
+      <EmailPopup open={activePopup === "email"} onClose={closePopup} />
+
+      {/* Popup เบอร์โทรศัพท์ */}
+      <TelPopup open={activePopup === "tel"} onClose={closePopup} />
     </>
   );
 }

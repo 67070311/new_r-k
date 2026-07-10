@@ -250,7 +250,7 @@ function TechnicalServiceSection() {
 
         <div className="overflow-hidden rounded-3xl bg-white shadow-sm">
           <Image
-            src="/product/after-sale/3.png"
+            src="/product/after-sale/3new.png"
             alt="Technical Service Team"
             width={680}
             height={460}
