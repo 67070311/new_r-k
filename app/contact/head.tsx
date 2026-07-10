@@ -1,111 +1,115 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Mail, Phone, Smartphone } from "lucide-react";
+import { motion } from "framer-motion";
 
-export default function ContactHead() {
+export default function Quotation() {
   return (
-    <section className="bg-white px-6 py-14 md:px-10 md:py-16 lg:px-20 lg:py-24">
-      <div className="mx-auto grid max-w-[1440px] grid-cols-1 items-start gap-12 lg:grid-cols-[420px_1fr] lg:gap-20">
-        {/* Left */}
+    <section className="overflow-hidden bg-white px-5 py-14 sm:px-8 sm:py-16 lg:px-16 lg:py-20">
+      <div className="mx-auto grid max-w-[1180px] grid-cols-1 items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <motion.div
           initial={{ opacity: 0, x: -35 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.25 }}
+          className="mx-auto w-full max-w-[430px] lg:mx-0"
         >
-          <img
-            src="/contact/contact.png"
-            alt="Contact"
-            className="w-full object-contain"
-          />
-
-          <div className="mt-8 space-y-5">
-            <div className="flex items-center gap-4">
-              <Mail className="h-7 w-7 text-[#222]" />
-              <span className="text-[18px] text-[#222]">
-                info@r-ktechnologygps.com
-              </span>
+          <div className="grid grid-cols-2 gap-5">
+            <div className="rounded-2xl border border-neutral-200 bg-white p-3 shadow-sm">
+              <img
+                src="/home/quotation/qr1.png"
+                alt="QR Code 1"
+                className="w-full object-contain"
+              />
             </div>
 
-            <div className="flex items-center gap-4">
-              <Smartphone className="h-7 w-7 text-[#222]" />
-              <span className="text-[18px] text-[#222]">
-                086-3004117, 086-8898593
-              </span>
+            <div className="rounded-2xl border border-neutral-200 bg-white p-3 shadow-sm">
+              <img
+                src="/home/quotation/qr2.png"
+                alt="QR Code 2"
+                className="w-full object-contain"
+              />
+            </div>
+          </div>
+
+          <div className="mt-8 space-y-5 text-[15px] text-black sm:text-[17px] lg:text-[18px]">
+            <div className="flex items-center gap-4 sm:gap-5">
+              <Mail className="h-5 w-5 shrink-0 stroke-[2] sm:h-6 sm:w-6" />
+              <span className="break-all">info@r-ktechnologygps.com</span>
             </div>
 
-            <div className="flex items-center gap-4">
-              <Phone className="h-7 w-7 text-[#222]" />
-              <span className="text-[18px] text-[#222]">02-1980006</span>
+            <div className="flex items-center gap-4 sm:gap-5">
+              <Smartphone className="h-5 w-5 shrink-0 stroke-[2] sm:h-6 sm:w-6" />
+              <span>086-3004117, 086-8898593</span>
+            </div>
+
+            <div className="flex items-center gap-4 sm:gap-5">
+              <Phone className="h-5 w-5 shrink-0 stroke-[2] sm:h-6 sm:w-6" />
+              <span>02-1980006</span>
             </div>
           </div>
         </motion.div>
 
-        {/* Right */}
         <motion.div
           initial={{ opacity: 0, x: 35 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+          viewport={{ once: true, amount: 0.25 }}
+          className="w-full"
         >
-          <h1 className="mb-7 text-[24px] font-medium text-black md:text-[28px]">
+          <h2 className="text-[24px] font-semibold text-black sm:text-[26px] lg:text-[28px]">
             ส่งข้อความ
-          </h1>
+          </h2>
 
-          <form className="space-y-5">
+          <form className="mt-7 space-y-5">
             <div>
-              <label className="mb-2 block text-[15px] font-medium text-[#555]">
+              <label className="mb-2 block text-[15px] font-medium text-black/70 sm:text-[16px]">
                 ชื่อ <span className="text-[#ED002B]">*</span>
               </label>
-
               <input
                 type="text"
                 placeholder="กรอกชื่อ"
-                className="h-[50px] w-full rounded-full border border-[#D9D9D9] px-5 text-[15px] outline-none transition focus:border-[#ED002B]"
+                className="h-[50px] w-full rounded-full border border-black/20 px-5 text-[15px] outline-none transition placeholder:text-black/35 focus:border-[#ED002B] sm:h-[54px]"
               />
             </div>
 
             <div>
-              <label className="mb-2 block text-[15px] font-medium text-[#555]">
+              <label className="mb-2 block text-[15px] font-medium text-black/70 sm:text-[16px]">
                 อีเมล <span className="text-[#ED002B]">*</span>
               </label>
-
               <input
                 type="email"
                 placeholder="กรอกอีเมล"
-                className="h-[50px] w-full rounded-full border border-[#D9D9D9] px-5 text-[15px] outline-none transition focus:border-[#ED002B]"
+                className="h-[50px] w-full rounded-full border border-black/20 px-5 text-[15px] outline-none transition placeholder:text-black/35 focus:border-[#ED002B] sm:h-[54px]"
               />
             </div>
 
             <div>
-              <label className="mb-2 block text-[15px] font-medium text-[#555]">
+              <label className="mb-2 block text-[15px] font-medium text-black/70 sm:text-[16px]">
                 เรื่อง <span className="text-[#ED002B]">*</span>
               </label>
-
               <input
                 type="text"
                 placeholder="กรอกเรื่อง"
-                className="h-[50px] w-full rounded-full border border-[#D9D9D9] px-5 text-[15px] outline-none transition focus:border-[#ED002B]"
+                className="h-[50px] w-full rounded-full border border-black/20 px-5 text-[15px] outline-none transition placeholder:text-black/35 focus:border-[#ED002B] sm:h-[54px]"
               />
             </div>
 
             <div>
-              <label className="mb-2 block text-[15px] font-medium text-[#555]">
+              <label className="mb-2 block text-[15px] font-medium text-black/70 sm:text-[16px]">
                 ข้อความ <span className="text-[#ED002B]">*</span>
               </label>
-
               <textarea
                 placeholder="กรอกข้อความ"
-                className="h-[120px] w-full resize-none rounded-[16px] border border-[#D9D9D9] px-5 py-4 text-[15px] outline-none transition focus:border-[#ED002B]"
+                className="h-[125px] w-full resize-none rounded-[16px] border border-black/20 px-5 py-4 text-[15px] outline-none transition placeholder:text-black/35 focus:border-[#ED002B] sm:h-[135px]"
               />
             </div>
 
             <button
               type="submit"
-              className="h-[50px] w-full rounded-full bg-[#ED002B] text-[16px] font-semibold text-white transition hover:bg-[#d90027]"
+              className="h-[50px] w-full rounded-full bg-[#ED002B] text-[16px] font-semibold text-white transition hover:bg-[#d90027] sm:h-[54px]"
             >
-              ส่งข้อความ
+              ขอใบเสนอราคา
             </button>
           </form>
         </motion.div>

@@ -50,17 +50,17 @@ const loginItems = [
 
 export default function Navbar() {
   return (
-    <nav className="fixed left-0 top-0 z-50 hidden h-[82px] w-full bg-white shadow-[0_2px_14px_rgba(0,0,0,0.07)] lg:block">
-      <div className="mx-auto grid h-full max-w-[1440px] grid-cols-[180px_1fr_180px] items-center px-10 xl:px-16">
+    <nav className="fixed left-0 top-0 z-50 hidden h-[90px] w-full bg-white shadow-[0_2px_14px_rgba(0,0,0,0.07)] lg:block">
+      <div className="mx-auto grid h-full max-w-[1440px] grid-cols-[250px_1fr_190px] items-center px-10 xl:px-16">
         <Link href="/" className="flex items-center">
           <img
             src="/navbar/logo.png"
             alt="R&K Logo"
-            className="h-[34px] w-auto"
+            className="h-[54px] w-auto object-contain"
           />
         </Link>
 
-        <div className="flex h-full items-center justify-center gap-7 whitespace-nowrap text-[15px] font-medium text-black xl:gap-9">
+        <div className="flex h-full items-center justify-center gap-7 whitespace-nowrap text-[16px] font-medium text-black xl:gap-9 xl:text-[17px]">
           <Link href="/" className="transition hover:text-[#108C2E]">
             หน้าหลัก
           </Link>
@@ -71,15 +71,15 @@ export default function Navbar() {
               className="flex items-center gap-1.5 text-black transition group-hover/about:text-[#108C2E]"
             >
               เกี่ยวกับเรา
-              <ChevronDown size={16} strokeWidth={2.2} />
+              <ChevronDown size={18} strokeWidth={2.2} />
             </Link>
 
-            <div className="invisible absolute left-1/2 top-full w-[220px] -translate-x-1/2 rounded-xl bg-white p-3 text-black opacity-0 shadow-[0_18px_45px_rgba(0,0,0,0.12)] transition-all duration-200 group-hover/about:visible group-hover/about:opacity-100">
+            <div className="invisible absolute left-1/2 top-full w-[230px] -translate-x-1/2 rounded-xl bg-white p-3 text-black opacity-0 shadow-[0_18px_45px_rgba(0,0,0,0.12)] transition-all duration-200 group-hover/about:visible group-hover/about:opacity-100">
               {aboutItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="block rounded-lg px-4 py-3 text-[14px] text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
+                  className="block rounded-lg px-4 py-3.5 text-[15px] text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
                 >
                   {item.label}
                 </Link>
@@ -93,25 +93,26 @@ export default function Navbar() {
               className="flex items-center gap-1.5 text-black transition group-hover/product:text-[#108C2E]"
             >
               สินค้าและบริการ
-              <ChevronDown size={16} strokeWidth={2.2} />
+              <ChevronDown size={18} strokeWidth={2.2} />
             </Link>
 
-            <div className="invisible absolute left-1/2 top-full w-[285px] -translate-x-1/2 rounded-2xl bg-white p-3 text-black opacity-0 shadow-[0_18px_45px_rgba(0,0,0,0.12)] transition-all duration-200 group-hover/product:visible group-hover/product:opacity-100">
+            <div className="invisible absolute left-1/2 top-full w-[305px] -translate-x-1/2 rounded-2xl bg-white p-3 text-black opacity-0 shadow-[0_18px_45px_rgba(0,0,0,0.12)] transition-all duration-200 group-hover/product:visible group-hover/product:opacity-100">
               <div className="group/device relative">
-                <div className="flex items-center justify-between rounded-xl px-4 py-3 text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]">
+                <div className="flex items-center justify-between rounded-xl px-4 py-3.5 text-[16px] text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]">
                   <div className="flex items-center gap-3">
-                    <Monitor size={20} />
+                    <Monitor size={22} />
                     <span>อุปกรณ์</span>
                   </div>
-                  <ChevronRight size={16} />
+
+                  <ChevronRight size={18} />
                 </div>
 
-                <div className="invisible absolute left-full top-0 ml-3 w-[220px] rounded-2xl bg-white p-3 text-black opacity-0 shadow-xl transition-all duration-200 group-hover/device:visible group-hover/device:opacity-100">
+                <div className="invisible absolute left-full top-0 ml-3 w-[230px] rounded-2xl bg-white p-3 text-black opacity-0 shadow-xl transition-all duration-200 group-hover/device:visible group-hover/device:opacity-100">
                   {deviceItems.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="block rounded-xl px-4 py-3 text-[14px] text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
+                      className="block rounded-xl px-4 py-3.5 text-[15px] text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
                     >
                       {item.label}
                     </Link>
@@ -122,13 +123,14 @@ export default function Navbar() {
               <div className="group/tracking relative">
                 <Link
                   href="/prodeuct-service/car-program/real-time"
-                  className="flex items-center justify-between rounded-xl px-4 py-3 text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
+                  className="flex items-center justify-between rounded-xl px-4 py-3.5 text-[16px] text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
                 >
                   <div className="flex items-center gap-3">
-                    <Car size={20} />
+                    <Car size={22} />
                     <span>โปรแกรมติดตามรถ</span>
                   </div>
-                  <ChevronRight size={16} />
+
+                  <ChevronRight size={18} />
                 </Link>
 
                 <div className="invisible absolute left-full top-0 ml-3 w-[390px] rounded-2xl bg-white p-4 text-black opacity-0 shadow-xl transition-all duration-200 group-hover/tracking:visible group-hover/tracking:opacity-100">
@@ -136,7 +138,7 @@ export default function Navbar() {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="block rounded-xl px-4 py-3 text-[14px] text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
+                      className="block rounded-xl px-4 py-3.5 text-[15px] text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
                     >
                       {item.label}
                     </Link>
@@ -146,9 +148,9 @@ export default function Navbar() {
 
               <Link
                 href="/prodeuct-service/after-sale"
-                className="flex items-center gap-3 rounded-xl px-4 py-3 text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
+                className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-[16px] text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
               >
-                <Headphones size={20} />
+                <Headphones size={22} />
                 <span>บริการหลังการขาย</span>
               </Link>
             </div>
@@ -177,32 +179,36 @@ export default function Navbar() {
         </div>
 
         <div className="group/login relative flex h-full items-center justify-end">
-          <button className="flex items-center gap-1.5 rounded-full bg-[#ED002B] px-7 py-3.5 text-[15px] font-medium text-white transition hover:bg-[#D90027]">
+          <button
+            type="button"
+            className="flex items-center gap-2 rounded-full bg-[#ED002B] px-8 py-3.5 text-[16px] font-medium text-white transition hover:bg-[#D90027]"
+          >
             Login
-            <ChevronDown size={16} />
+            <ChevronDown size={18} />
           </button>
 
-          <div className="invisible absolute right-0 top-full w-[420px] rounded-2xl border border-neutral-100 bg-white p-4 text-black opacity-0 shadow-xl transition-all duration-200 group-hover/login:visible group-hover/login:opacity-100">
+          <div className="invisible absolute right-0 top-full w-[440px] rounded-2xl border border-neutral-100 bg-white p-4 text-black opacity-0 shadow-xl transition-all duration-200 group-hover/login:visible group-hover/login:opacity-100">
             {loginItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="mb-2 flex items-start gap-4 rounded-xl border border-neutral-100 p-4 text-black transition hover:bg-[#F5FBF7]"
+                className="mb-2 flex items-start gap-4 rounded-xl border border-neutral-100 p-4 text-black transition last:mb-0 hover:bg-[#F5FBF7]"
               >
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gray-100 text-[#108C2E]">
-                  <LogIn size={20} />
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gray-100 text-[#108C2E]">
+                  <LogIn size={22} />
                 </div>
 
                 <div>
-                  <p className="text-[14px] font-medium text-black">
+                  <p className="text-[15px] font-medium text-black">
                     {item.title}
                   </p>
-                  <p className="mt-1 text-[13px] leading-6 text-gray-500">
+
+                  <p className="mt-1 text-[14px] leading-6 text-gray-500">
                     {item.desc}
                   </p>
                 </div>
 
-                <ChevronRight className="ml-auto mt-2 h-4 w-4 text-gray-400" />
+                <ChevronRight className="ml-auto mt-2 h-[18px] w-[18px] shrink-0 text-gray-400" />
               </Link>
             ))}
           </div>

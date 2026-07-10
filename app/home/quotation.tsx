@@ -14,11 +14,23 @@ export default function Quotation() {
           viewport={{ once: true, amount: 0.25 }}
           className="mx-auto w-full max-w-[430px] lg:mx-0"
         >
-          <img
-            src="/home/quotation/line.png"
-            alt="สอบถาม ติดต่อเพิ่มเติม"
-            className="block w-full object-contain"
-          />
+          <div className="grid grid-cols-2 gap-5">
+            <div className="rounded-2xl border border-neutral-200 bg-white p-3 shadow-sm">
+              <img
+                src="/home/quotation/qr1.png"
+                alt="QR Code 1"
+                className="w-full object-contain"
+              />
+            </div>
+
+            <div className="rounded-2xl border border-neutral-200 bg-white p-3 shadow-sm">
+              <img
+                src="/home/quotation/qr2.png"
+                alt="QR Code 2"
+                className="w-full object-contain"
+              />
+            </div>
+          </div>
 
           <div className="mt-8 space-y-5 text-[15px] text-black sm:text-[17px] lg:text-[18px]">
             <div className="flex items-center gap-4 sm:gap-5">
