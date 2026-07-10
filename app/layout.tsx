@@ -2,6 +2,7 @@ import { Anuphan } from "next/font/google";
 import Navbar from "./component/navbar";
 import NavbarMobile from "./component/navbarmobile";
 import Footer from "./component/footer";
+import PopupPage from "./popup/page";
 import "./globals.css";
 
 const anuphan = Anuphan({
@@ -31,6 +32,9 @@ export default function RootLayout({
         <main className="pt-[82px] lg:pt-[88px] min-h-screen">{children}</main>
 
         <Footer />
+
+        {/* Floating Messenger Popup */}
+        <PopupPage />
       </body>
     </html>
   );

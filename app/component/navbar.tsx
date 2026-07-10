@@ -4,7 +4,6 @@ import {
   ChevronDown,
   ChevronRight,
   Headphones,
-  LogIn,
   Monitor,
 } from "lucide-react";
 
@@ -27,24 +26,6 @@ const trackingItems = [
   {
     label: "GPS ติดตามรถ Real Time",
     href: "/prodeuct-service/car-program/real-time",
-  },
-];
-
-const loginItems = [
-  {
-    title: "LOGIN SERVICE",
-    desc: "ระบบ GPS ติดตามรถส่วนบุคคลและขนส่งสินค้าทั่วไป",
-    href: "/login/service",
-  },
-  {
-    title: "LOGIN TRANSPORT",
-    desc: "ระบบ GPS ติดตามรถขนส่งที่ใช้เครื่องรูดบัตรใบขับขี่",
-    href: "/login/transport",
-  },
-  {
-    title: "GPS กันขโมย",
-    desc: "ระบบ GPS ติดตามรถส่วนบุคคลจับโจรขโมยผ่านดาวเทียม",
-    href: "/login/anti-theft",
   },
 ];
 
@@ -178,42 +159,42 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="group/login relative flex h-full items-center justify-end">
-          <button
-            type="button"
-            className="flex items-center gap-2 rounded-full bg-[#ED002B] px-8 py-3.5 text-[16px] font-medium text-white transition hover:bg-[#D90027]"
+        <div className="flex h-full items-center justify-end">
+          <a
+            href="https://rkgps.com/tracking/index.php?page=login"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative isolate flex min-w-[130px] items-center justify-center overflow-hidden rounded-full bg-[#ED002B] px-8 py-3.5 text-[16px] font-semibold text-white shadow-[0_8px_22px_rgba(237,0,43,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#D90027] hover:shadow-[0_12px_28px_rgba(237,0,43,0.32)]"
           >
-            Login
-            <ChevronDown size={18} />
-          </button>
+            <span className="relative z-10">Login</span>
 
-          <div className="invisible absolute right-0 top-full w-[440px] rounded-2xl border border-neutral-100 bg-white p-4 text-black opacity-0 shadow-xl transition-all duration-200 group-hover/login:visible group-hover/login:opacity-100">
-            {loginItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="mb-2 flex items-start gap-4 rounded-xl border border-neutral-100 p-4 text-black transition last:mb-0 hover:bg-[#F5FBF7]"
-              >
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gray-100 text-[#108C2E]">
-                  <LogIn size={22} />
-                </div>
-
-                <div>
-                  <p className="text-[15px] font-medium text-black">
-                    {item.title}
-                  </p>
-
-                  <p className="mt-1 text-[14px] leading-6 text-gray-500">
-                    {item.desc}
-                  </p>
-                </div>
-
-                <ChevronRight className="ml-auto mt-2 h-[18px] w-[18px] shrink-0 text-gray-400" />
-              </Link>
-            ))}
-          </div>
+            <span className="pointer-events-none absolute inset-y-[-40%] left-[-70%] w-[45%] rotate-[20deg] bg-gradient-to-r from-transparent via-white/70 to-transparent blur-[1px] animate-[loginShine_2.8s_ease-in-out_infinite]" />
+          </a>
         </div>
       </div>
+
+      <style>{`
+        @keyframes loginShine {
+          0% {
+            left: -70%;
+            opacity: 0;
+          }
+
+          15% {
+            opacity: 1;
+          }
+
+          45% {
+            left: 130%;
+            opacity: 0;
+          }
+
+          100% {
+            left: 130%;
+            opacity: 0;
+          }
+        }
+      `}</style>
     </nav>
   );
 }
