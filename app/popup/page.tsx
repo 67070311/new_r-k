@@ -40,7 +40,7 @@ export default function PopupPage() {
       color: "bg-[#1687F8]",
       icon: <FaFacebookMessenger className="text-[23px] sm:text-[28px]" />,
       type: "link",
-      href: "https://m.me/USERNAME",
+      href: "https://business.facebook.com/latest/inbox?asset_id=593654690486848",
     },
     {
       title: "LINE",

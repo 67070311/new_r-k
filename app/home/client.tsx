@@ -2,21 +2,14 @@
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
-const clients = [
-  "/home/client/1.png",
-  "/home/client/2.png",
-  "/home/client/3.png",
-  "/home/client/4.png",
-  "/home/client/5.png",
-  "/home/client/6.png",
-  "/home/client/7.png",
-  "/home/client/8.png",
-  "/home/client/9.png",
-  "/home/client/10.png",
-  "/home/client/11.png",
-  "/home/client/12.png",
-];
+const clients = Array.from(
+  { length: 55 },
+  (_, index) => `/home/client/${index + 1}.png`,
+);
+
+const marqueeClients = [...clients, ...clients];
 
 export default function ClientSection() {
   return (
@@ -30,48 +23,49 @@ export default function ClientSection() {
           <div className="mx-auto mt-3 h-[2px] w-14 rounded-full bg-[#ED002B]" />
         </div>
 
-        <div className="relative mt-10 overflow-hidden">
-          <div className="flex w-max animate-client-scroll">
-            {[...clients, ...clients].map((logo, index) => (
+        <div className="relative mt-10 overflow-hidden sm:mt-12">
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-white to-transparent sm:w-20" />
+
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-white to-transparent sm:w-20" />
+
+          <motion.div
+            className="flex w-max items-center"
+            animate={{
+              x: ["0%", "-50%"],
+            }}
+            transition={{
+              duration: 120,
+              ease: "linear",
+              repeat: Infinity,
+            }}
+          >
+            {marqueeClients.map((logo, index) => (
               <div
-                key={index}
-                className="mx-3 flex h-[52px] w-[88px] shrink-0 items-center justify-center sm:mx-4 sm:h-[60px] sm:w-[100px] lg:mx-5 lg:h-[72px] lg:w-[120px]"
+                key={`${logo}-${index}`}
+                className="flex h-[90px] w-[140px] shrink-0 items-center justify-center px-5 sm:w-[170px] sm:px-6 lg:w-[190px]"
               >
                 <img
                   src={logo}
-                  alt={`Client ${index + 1}`}
-                  className="max-h-full max-w-full object-contain"
+                  alt={`โลโก้ลูกค้า ${(index % clients.length) + 1}`}
+                  className="max-h-16 max-w-full object-contain"
+                  loading="lazy"
+                  draggable={false}
                 />
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
-        <div className="mt-8 flex justify-center">
+        <div className="mt-8 flex justify-center sm:mt-10">
           <Link
-            href="/clients"
-            className="group flex items-center gap-2 text-[15px] font-medium text-[#ED002B]"
+            href="/client-all"
+            className="group inline-flex items-center gap-2 text-[15px] font-medium text-[#ED002B] transition-opacity hover:opacity-70"
           >
             ดูทั้งหมด
-            <ArrowRight className="h-4 w-4" />
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes clientScroll {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(-50%);
-          }
-        }
-
-        .animate-client-scroll {
-          animation: clientScroll 28s linear infinite;
-        }
-      `}</style>
     </section>
   );
 }

@@ -32,137 +32,163 @@ const trackingItems = [
 export default function Navbar() {
   return (
     <nav className="fixed left-0 top-0 z-50 hidden h-[90px] w-full bg-white shadow-[0_2px_14px_rgba(0,0,0,0.07)] lg:block">
-      <div className="mx-auto grid h-full max-w-[1440px] grid-cols-[250px_1fr_190px] items-center px-10 xl:px-16">
-        <Link href="/" className="flex items-center">
-          <img
-            src="/navbar/logo.png"
-            alt="R&K Logo"
-            className="h-[54px] w-auto object-contain"
-          />
-        </Link>
-
-        <div className="flex h-full items-center justify-center gap-7 whitespace-nowrap text-[16px] font-medium text-black xl:gap-9 xl:text-[17px]">
-          <Link href="/" className="transition hover:text-[#108C2E]">
-            หน้าหลัก
-          </Link>
-
-          <div className="group/about relative flex h-full items-center">
-            <Link
-              href="/about/aboutus"
-              className="flex items-center gap-1.5 text-black transition group-hover/about:text-[#108C2E]"
-            >
-              เกี่ยวกับเรา
-              <ChevronDown size={18} strokeWidth={2.2} />
-            </Link>
-
-            <div className="invisible absolute left-1/2 top-full w-[230px] -translate-x-1/2 rounded-xl bg-white p-3 text-black opacity-0 shadow-[0_18px_45px_rgba(0,0,0,0.12)] transition-all duration-200 group-hover/about:visible group-hover/about:opacity-100">
-              {aboutItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="block rounded-lg px-4 py-3.5 text-[15px] text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <div className="group/product relative flex h-full items-center">
-            <Link
-              href="/prodeuct-service/car-program/real-time"
-              className="flex items-center gap-1.5 text-black transition group-hover/product:text-[#108C2E]"
-            >
-              สินค้าและบริการ
-              <ChevronDown size={18} strokeWidth={2.2} />
-            </Link>
-
-            <div className="invisible absolute left-1/2 top-full w-[305px] -translate-x-1/2 rounded-2xl bg-white p-3 text-black opacity-0 shadow-[0_18px_45px_rgba(0,0,0,0.12)] transition-all duration-200 group-hover/product:visible group-hover/product:opacity-100">
-              <div className="group/device relative">
-                <div className="flex items-center justify-between rounded-xl px-4 py-3.5 text-[16px] text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]">
-                  <div className="flex items-center gap-3">
-                    <Monitor size={22} />
-                    <span>อุปกรณ์</span>
-                  </div>
-
-                  <ChevronRight size={18} />
-                </div>
-
-                <div className="invisible absolute left-full top-0 ml-3 w-[230px] rounded-2xl bg-white p-3 text-black opacity-0 shadow-xl transition-all duration-200 group-hover/device:visible group-hover/device:opacity-100">
-                  {deviceItems.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="block rounded-xl px-4 py-3.5 text-[15px] text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              <div className="group/tracking relative">
-                <Link
-                  href="/prodeuct-service/car-program/real-time"
-                  className="flex items-center justify-between rounded-xl px-4 py-3.5 text-[16px] text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
-                >
-                  <div className="flex items-center gap-3">
-                    <Car size={22} />
-                    <span>โปรแกรมติดตามรถ</span>
-                  </div>
-
-                  <ChevronRight size={18} />
-                </Link>
-
-                <div className="invisible absolute left-full top-0 ml-3 w-[390px] rounded-2xl bg-white p-4 text-black opacity-0 shadow-xl transition-all duration-200 group-hover/tracking:visible group-hover/tracking:opacity-100">
-                  {trackingItems.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="block rounded-xl px-4 py-3.5 text-[15px] text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              <Link
-                href="/prodeuct-service/after-sale"
-                className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-[16px] text-black transition hover:bg-[#F5FBF7] hover:text-[#108C2E]"
-              >
-                <Headphones size={22} />
-                <span>บริการหลังการขาย</span>
-              </Link>
-            </div>
-          </div>
-
+      <div className="mx-auto grid h-full max-w-[1600px] grid-cols-[270px_minmax(0,1fr)_340px] items-center px-6 xl:grid-cols-[310px_minmax(0,1fr)_370px] xl:px-10 2xl:grid-cols-[340px_minmax(0,1fr)_390px] 2xl:px-12">
+        {/* Logo */}
+        <div className="flex h-full items-center justify-start">
           <Link
-            href="/work-with-us"
-            className="text-black transition hover:text-[#108C2E]"
+            href="/"
+            aria-label="กลับสู่หน้าหลัก"
+            className="flex items-center"
           >
-            สมัครงานกับเรา
-          </Link>
-
-          <Link
-            href="/contact"
-            className="text-black transition hover:text-[#108C2E]"
-          >
-            ติดต่อเรา
+            <img
+              src="/navbar/logo.png"
+              alt="R&K Technology GPS"
+              className="h-[56px] w-auto object-contain xl:h-[62px]"
+            />
           </Link>
         </div>
 
-        <div className="flex h-full items-center justify-end">
-          <a
-            href="https://rkgps.com/tracking/index.php?page=login"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative isolate flex min-w-[130px] items-center justify-center overflow-hidden rounded-full bg-[#ED002B] px-8 py-3.5 text-[16px] font-semibold text-white shadow-[0_8px_22px_rgba(237,0,43,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#D90027] hover:shadow-[0_12px_28px_rgba(237,0,43,0.32)]"
-          >
-            <span className="relative z-10">Login</span>
+        {/* Main menu */}
+        <div className="flex h-full min-w-0 items-center justify-center">
+          <div className="flex h-full items-center justify-center gap-4 whitespace-nowrap text-[14px] font-medium text-black xl:gap-6 xl:text-[15px] 2xl:gap-8 2xl:text-[16px]">
+            <Link
+              href="/"
+              className="transition-colors duration-200 hover:text-[#108C2E]"
+            >
+              หน้าหลัก
+            </Link>
 
-            <span className="pointer-events-none absolute inset-y-[-40%] left-[-70%] w-[45%] rotate-[20deg] bg-gradient-to-r from-transparent via-white/70 to-transparent blur-[1px] animate-[loginShine_2.8s_ease-in-out_infinite]" />
-          </a>
+            {/* About */}
+            <div className="group/about relative flex h-full items-center">
+              <Link
+                href="/about/aboutus"
+                className="flex items-center gap-1.5 transition-colors duration-200 group-hover/about:text-[#108C2E]"
+              >
+                <span>เกี่ยวกับเรา</span>
+                <ChevronDown size={17} strokeWidth={2.2} />
+              </Link>
+
+              <div className="invisible absolute left-1/2 top-full w-[230px] -translate-x-1/2 translate-y-2 rounded-xl bg-white p-3 opacity-0 shadow-[0_18px_45px_rgba(0,0,0,0.12)] transition-all duration-200 group-hover/about:visible group-hover/about:translate-y-0 group-hover/about:opacity-100">
+                {aboutItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block rounded-lg px-4 py-3.5 text-[15px] text-black transition-colors duration-200 hover:bg-[#F5FBF7] hover:text-[#108C2E]"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Product */}
+            <div className="group/product relative flex h-full items-center">
+              <Link
+                href="/prodeuct-service/car-program/real-time"
+                className="flex items-center gap-1.5 transition-colors duration-200 group-hover/product:text-[#108C2E]"
+              >
+                <span>สินค้าและบริการ</span>
+                <ChevronDown size={17} strokeWidth={2.2} />
+              </Link>
+
+              <div className="invisible absolute left-1/2 top-full w-[305px] -translate-x-1/2 translate-y-2 rounded-2xl bg-white p-3 opacity-0 shadow-[0_18px_45px_rgba(0,0,0,0.12)] transition-all duration-200 group-hover/product:visible group-hover/product:translate-y-0 group-hover/product:opacity-100">
+                {/* Device */}
+                <div className="group/device relative">
+                  <div className="flex cursor-default items-center justify-between rounded-xl px-4 py-3.5 text-[16px] text-black transition-colors duration-200 hover:bg-[#F5FBF7] hover:text-[#108C2E]">
+                    <div className="flex items-center gap-3">
+                      <Monitor size={22} />
+                      <span>อุปกรณ์</span>
+                    </div>
+
+                    <ChevronRight size={18} />
+                  </div>
+
+                  <div className="invisible absolute left-full top-0 ml-3 w-[230px] translate-x-2 rounded-2xl bg-white p-3 opacity-0 shadow-xl transition-all duration-200 group-hover/device:visible group-hover/device:translate-x-0 group-hover/device:opacity-100">
+                    {deviceItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="block rounded-xl px-4 py-3.5 text-[15px] text-black transition-colors duration-200 hover:bg-[#F5FBF7] hover:text-[#108C2E]"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Tracking */}
+                <div className="group/tracking relative">
+                  <Link
+                    href="/prodeuct-service/car-program/real-time"
+                    className="flex items-center justify-between rounded-xl px-4 py-3.5 text-[16px] text-black transition-colors duration-200 hover:bg-[#F5FBF7] hover:text-[#108C2E]"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Car size={22} />
+                      <span>โปรแกรมติดตามรถ</span>
+                    </div>
+
+                    <ChevronRight size={18} />
+                  </Link>
+
+                  <div className="invisible absolute left-full top-0 ml-3 w-[330px] translate-x-2 rounded-2xl bg-white p-3 opacity-0 shadow-xl transition-all duration-200 group-hover/tracking:visible group-hover/tracking:translate-x-0 group-hover/tracking:opacity-100">
+                    {trackingItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="block rounded-xl px-4 py-3.5 text-[15px] text-black transition-colors duration-200 hover:bg-[#F5FBF7] hover:text-[#108C2E]"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                {/* After sale */}
+                <Link
+                  href="/prodeuct-service/after-sale"
+                  className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-[16px] text-black transition-colors duration-200 hover:bg-[#F5FBF7] hover:text-[#108C2E]"
+                >
+                  <Headphones size={22} />
+                  <span>บริการหลังการขาย</span>
+                </Link>
+              </div>
+            </div>
+
+            <Link
+              href="/work-with-us"
+              className="transition-colors duration-200 hover:text-[#108C2E]"
+            >
+              สมัครงานกับเรา
+            </Link>
+
+            <Link
+              href="/contact"
+              className="transition-colors duration-200 hover:text-[#108C2E]"
+            >
+              ติดต่อเรา
+            </Link>
+          </div>
+        </div>
+
+        {/* Login */}
+        <div className="flex h-full items-center justify-end">
+          <div className="flex items-center justify-end gap-3 xl:gap-4">
+            <span className="whitespace-nowrap text-right text-[14px] font-semibold leading-[1.35] text-[#ED002B] xl:text-[15px] 2xl:text-[16px]">
+              เข้าสู่ระบบติดตามรถที่นี่
+            </span>
+
+            <a
+              href="https://rkgps.com/tracking/index.php?page=login"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="เข้าสู่ระบบติดตามรถ"
+              className="group relative isolate flex min-w-[118px] items-center justify-center overflow-hidden rounded-full bg-[#ED002B] px-6 py-2.5 text-[16px] font-bold tracking-[0.4px] text-white shadow-[0_8px_22px_rgba(237,0,43,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#D90027] hover:shadow-[0_12px_28px_rgba(237,0,43,0.32)] xl:min-w-[130px] xl:px-7 xl:py-3 xl:text-[17px] 2xl:min-w-[140px] 2xl:text-[18px]"
+            >
+              <span className="relative z-10">Login</span>
+
+              <span className="pointer-events-none absolute inset-y-[-40%] left-[-70%] w-[45%] rotate-[20deg] bg-gradient-to-r from-transparent via-white/70 to-transparent blur-[1px] animate-[loginShine_2.8s_ease-in-out_infinite]" />
+            </a>
+          </div>
         </div>
       </div>
 
