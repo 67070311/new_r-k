@@ -5,8 +5,9 @@ import { motion } from "framer-motion";
 
 export default function Quotation() {
   return (
-    <section className="overflow-hidden bg-white px-5 py-14 sm:px-8 sm:py-16 lg:px-16 lg:py-20">
-      <div className="mx-auto grid max-w-[1180px] grid-cols-1 items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+    <section className="overflow-hidden bg-white px-5 py-14 sm:px-8 sm:py-16 lg:px-16 lg:pb-20 lg:pt-[230px]">
+      <div className="mx-auto grid max-w-[1180px] grid-cols-1 items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:gap-20">
+        {/* QR Code และข้อมูลติดต่อ */}
         <motion.div
           initial={{ opacity: 0, x: -35 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -14,9 +15,11 @@ export default function Quotation() {
           viewport={{ once: true, amount: 0.25 }}
           className="mx-auto w-full max-w-[430px] lg:mx-0"
         >
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          {/* QR Code */}
+          <div className="grid grid-cols-2 gap-3 sm:gap-5">
+            {/* LINE QR Code */}
             <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-              <div className="p-3 pb-0">
+              <div className="p-2 pb-0 sm:p-3 sm:pb-0">
                 <img
                   src="/home/quotation/qr1.png"
                   alt="LINE QR Code"
@@ -24,14 +27,15 @@ export default function Quotation() {
                 />
               </div>
 
-              <div className="px-3 pb-5 pt-2 text-center">
-                <p className="text-[18px] font-extrabold tracking-[0.03em] text-[#ED002B] sm:text-[19px]">
+              <div className="px-2 pb-3 pt-1 text-center sm:px-3 sm:pb-5 sm:pt-2">
+                <p className="whitespace-nowrap text-[12px] font-extrabold tracking-[0.02em] text-[#ED002B] min-[380px]:text-[13px] sm:text-[19px]">
                   ID LINE : RKGPS
                 </p>
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white p-3 shadow-sm">
+            {/* QR Code 2 */}
+            <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white p-2 shadow-sm sm:p-3">
               <img
                 src="/home/quotation/qr2.png"
                 alt="QR Code 2"
@@ -40,12 +44,14 @@ export default function Quotation() {
             </div>
           </div>
 
+          {/* ข้อมูลติดต่อ */}
           <div className="mt-8 space-y-5 text-[15px] text-black sm:text-[17px] lg:text-[18px]">
             <a
               href="mailto:info@r-ktechnologygps.com"
               className="flex items-center gap-4 transition hover:text-[#ED002B] sm:gap-5"
             >
               <Mail className="h-5 w-5 shrink-0 stroke-[2] sm:h-6 sm:w-6" />
+
               <span className="break-all">info@r-ktechnologygps.com</span>
             </a>
 
@@ -76,15 +82,21 @@ export default function Quotation() {
               className="flex items-center gap-4 transition hover:text-[#ED002B] sm:gap-5"
             >
               <Phone className="h-5 w-5 shrink-0 stroke-[2] sm:h-6 sm:w-6" />
+
               <span>02-1980006</span>
             </a>
           </div>
         </motion.div>
 
+        {/* ฟอร์มส่งข้อความ */}
         <motion.div
           initial={{ opacity: 0, x: 35 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+          transition={{
+            duration: 0.7,
+            ease: "easeOut",
+            delay: 0.1,
+          }}
           viewport={{ once: true, amount: 0.25 }}
           className="w-full"
         >
@@ -93,6 +105,7 @@ export default function Quotation() {
           </h2>
 
           <form className="mt-7 space-y-5">
+            {/* ชื่อ */}
             <div>
               <label
                 htmlFor="quotation-name"
@@ -111,6 +124,7 @@ export default function Quotation() {
               />
             </div>
 
+            {/* อีเมล */}
             <div>
               <label
                 htmlFor="quotation-email"
@@ -129,6 +143,7 @@ export default function Quotation() {
               />
             </div>
 
+            {/* เรื่อง */}
             <div>
               <label
                 htmlFor="quotation-subject"
@@ -147,6 +162,7 @@ export default function Quotation() {
               />
             </div>
 
+            {/* ข้อความ */}
             <div>
               <label
                 htmlFor="quotation-message"
@@ -164,6 +180,7 @@ export default function Quotation() {
               />
             </div>
 
+            {/* ปุ่มส่ง */}
             <button
               type="submit"
               className="h-[50px] w-full rounded-full bg-[#ED002B] text-[16px] font-semibold text-white shadow-[0_8px_22px_rgba(237,0,43,0.18)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#D90027] hover:shadow-[0_12px_26px_rgba(237,0,43,0.28)] sm:h-[54px]"
