@@ -1,60 +1,152 @@
-import { BatteryCharging, MapPin, RadioTower, ShieldCheck } from "lucide-react";
+import {
+  Car,
+  CheckCircle2,
+  Gift,
+  Laptop,
+  Phone,
+  ShieldCheck,
+  User,
+  Users,
+  GraduationCap,
+  Briefcase,
+  Home,
+  Wallet,
+} from "lucide-react";
 
 const benefits = [
   {
-    icon: RadioTower,
-    title: "รองรับ 3G",
-    desc: "เชื่อมต่อเสถียร",
-  },
-  {
-    icon: MapPin,
-    title: "ติดตามแม่นยำ",
-    desc: "เรียลไทม์",
-  },
-  {
-    icon: BatteryCharging,
-    title: "แบตเตอรี่สำรอง",
-    desc: "ในตัว",
-  },
-  {
     icon: ShieldCheck,
-    title: "ติดตั้งง่าย",
-    desc: "ใช้งานได้ทันที",
+    title: "ประกันสังคม",
+    desc: "หรือสวัสดิการอื่น ๆ ตามที่กฎหมายแรงงานกำหนด",
+  },
+  {
+    icon: Phone,
+    title: "ค่าโทรศัพท์",
+    desc: "เงินช่วยค่าโทรศัพท์ (สำหรับตำแหน่งพนักงานขาย)",
+  },
+  {
+    icon: Car,
+    title: "ค่าน้ำมันและค่าสึกหรอรถ",
+    desc: "เงินช่วยค่าน้ำมันรถ และค่าสึกหรอรถ",
+  },
+  {
+    icon: Gift,
+    title: "โบนัสและคอมมิชชั่น",
+    desc: "โบนัส คอมมิชชั่น หรือเงินอัดฉีดพิเศษ ฯลฯ",
+  },
+];
+
+const qualifications = [
+  {
+    icon: User,
+    text: "ชาย / หญิง",
+  },
+  {
+    icon: Users,
+    text: "อายุ 28 - 40 ปี",
+  },
+  {
+    icon: Home,
+    text: "มีที่พักอาศัยในจังหวัดที่ต้องการสมัคร",
+  },
+  {
+    icon: Car,
+    text: "หากมียานพาหนะและคอมพิวเตอร์ส่วนตัว จะพิจารณาเป็นพิเศษ",
+  },
+  {
+    icon: Laptop,
+    text: "มีความสามารถใช้คอมพิวเตอร์ได้ดี",
+  },
+  {
+    icon: GraduationCap,
+    text: "วุฒิการศึกษาขั้นต่ำ ปวช. ขึ้นไป",
+  },
+  {
+    icon: Briefcase,
+    text: "มีประสบการณ์ด้านการขายมาก่อน",
+  },
+  {
+    icon: CheckCircle2,
+    text: "บุคลิกภาพดี มีความมั่นใจ ทำงานคล่องแคล่ว และมีมนุษยสัมพันธ์ดี",
+  },
+  {
+    icon: CheckCircle2,
+    text: "เหมาะสมกับตำแหน่งงานและสถานะภาพการทำงาน",
+  },
+  {
+    icon: Wallet,
+    text: "อัตราฐานเงินเดือนและคอมมิชชั่น ขึ้นอยู่กับความสามารถ พร้อมเงินอัดฉีดพิเศษ เบี้ยขยัน โบนัสประจำปี และสวัสดิการอื่น ๆ",
   },
 ];
 
 export default function BenefitSection() {
   return (
-    <section className="bg-white py-10 md:py-12 lg:py-14">
+    <section className="bg-white py-12 md:py-16">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10 lg:px-20">
-        <h2 className="text-[18px] font-semibold text-black md:text-[20px]">
-          สวัสดิการ
-        </h2>
+        {/* สวัสดิการ */}
+        <div>
+          <h2 className="text-[18px] font-semibold text-black md:text-[22px]">
+            สวัสดิการ
+          </h2>
 
-        <div className="mt-3 h-[2px] w-[70px] bg-[#ED002B]" />
+          <div className="mt-3 h-[3px] w-[70px] rounded-full bg-[#ED002B]" />
 
-        <div className="mt-8 grid grid-cols-1 gap-y-7 sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-4 lg:gap-x-10">
-          {benefits.map((item) => {
-            const Icon = item.icon;
+          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {benefits.map((item) => {
+              const Icon = item.icon;
 
-            return (
-              <div key={item.title} className="flex items-center gap-3">
-                <div className="flex h-[58px] w-[58px] shrink-0 items-center justify-center rounded-full bg-[#FFF0F3] md:h-[62px] md:w-[62px] lg:h-[66px] lg:w-[66px]">
-                  <Icon className="h-[27px] w-[27px] text-[#ED002B] md:h-[29px] md:w-[29px]" />
-                </div>
+              return (
+                <div
+                  key={item.title}
+                  className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FFF0F3]">
+                    <Icon className="h-7 w-7 text-[#ED002B]" />
+                  </div>
 
-                <div>
-                  <h3 className="text-[15px] font-semibold leading-tight text-black md:text-[16px]">
+                  <h3 className="mt-5 text-base font-semibold text-black">
                     {item.title}
                   </h3>
 
-                  <p className="mt-1 text-[13px] font-normal leading-relaxed text-[#333] md:text-[14px]">
+                  <p className="mt-2 text-sm leading-6 text-gray-600">
                     {item.desc}
                   </p>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+        </div>
+
+        {/* คุณสมบัติผู้สมัคร */}
+        <div className="mt-20">
+          <h2 className="text-[18px] font-semibold text-black md:text-[22px]">
+            คุณสมบัติผู้สมัคร
+          </h2>
+
+          <div className="mt-3 h-[3px] w-[70px] rounded-full bg-[#ED002B]" />
+
+          <div className="mt-10 rounded-3xl bg-gray-50 p-6 md:p-10">
+            <div className="grid gap-5 md:grid-cols-2">
+              {qualifications.map((item, index) => {
+                const Icon = item.icon;
+
+                return (
+                  <div
+                    key={index}
+                    className="flex items-start gap-4 rounded-xl bg-white p-4 shadow-sm"
+                  >
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#FFF0F3]">
+                      <Icon className="h-5 w-5 text-[#ED002B]" />
+                    </div>
+
+                    <p className="text-[15px] leading-7 text-gray-700">
+                      {item.text}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </section>
