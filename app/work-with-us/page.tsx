@@ -1,7 +1,7 @@
 import Banner from "./banner";
 import WorkSection from "./1";
 import QualificationSection from "./2";
-import DealerSection from "./4";
+import BenefitSection from "./3";
 import ContactSection from "./5";
 
 export default function Page() {
@@ -10,7 +10,7 @@ export default function Page() {
       <Banner />
       <WorkSection />
       <QualificationSection />
-      <DealerSection />
+      <BenefitSection />
       <ContactSection />
     </main>
   );
