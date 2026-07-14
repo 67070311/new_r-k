@@ -6,7 +6,7 @@ import { ClipboardList, MapPin, ShieldCheck } from "lucide-react";
 const features = [
   {
     title: "ติดตามแบบเรียลไทม์",
-    desc: "อัปเดตตำแหน่งทุกวินาที",
+    desc: "อัพเดตตำแหน่งตลอด 24 ชั่วโมง",
     icon: MapPin,
     color: "text-[#00A84F]",
   },

@@ -4,7 +4,9 @@ import {
   ChevronDown,
   ChevronRight,
   Headphones,
+  Laptop,
   Monitor,
+  Smartphone,
 } from "lucide-react";
 
 const aboutItems = [
@@ -24,8 +26,16 @@ const deviceItems = [
 
 const trackingItems = [
   {
-    label: "GPS ติดตามรถ Real Time",
-    href: "/prodeuct-service/car-program/real-time",
+    label: "ระบบติดตามรถผ่านคอมพิวเตอร์",
+    description: "ใช้งานผ่านเว็บไซต์บน PC และ Apple Mac",
+    href: "/prodeuct-service/car-program/com",
+    icon: Laptop,
+  },
+  {
+    label: "ระบบติดตามรถผ่านโทรศัพท์",
+    description: "ติดตามตำแหน่งรถผ่านแอปบนมือถือ",
+    href: "/prodeuct-service/car-program/mobile",
+    icon: Smartphone,
   },
 ];
 
@@ -130,10 +140,10 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* Product */}
+            {/* Product and service */}
             <div className="group/product relative flex h-full items-center">
               <Link
-                href="/prodeuct-service/car-program/real-time"
+                href="/prodeuct-service/car-program/com"
                 className="flex h-full items-center gap-1.5 transition-colors duration-200 group-hover/product:text-white/75"
               >
                 <span>สินค้าและบริการ</span>
@@ -165,30 +175,48 @@ export default function Navbar() {
                   </div>
                 </div>
 
-                {/* Tracking */}
+                {/* Tracking program */}
                 <div className="group/tracking relative">
-                  <Link
-                    href="/prodeuct-service/car-program/real-time"
-                    className="flex items-center justify-between rounded-xl px-4 py-3.5 text-[16px] font-medium text-black transition-colors duration-200 hover:bg-[#FFF3F5] hover:text-[#ED002B]"
-                  >
+                  <div className="flex cursor-default items-center justify-between rounded-xl px-4 py-3.5 text-[16px] font-medium text-black transition-colors duration-200 hover:bg-[#FFF3F5] hover:text-[#ED002B]">
                     <div className="flex items-center gap-3">
                       <Car size={22} />
                       <span>โปรแกรมติดตามรถ</span>
                     </div>
 
                     <ChevronRight size={18} />
-                  </Link>
+                  </div>
 
-                  <div className="invisible absolute left-full top-0 ml-3 w-[330px] translate-x-2 rounded-2xl bg-white p-3 opacity-0 shadow-[0_20px_45px_rgba(0,0,0,0.16)] transition-all duration-200 group-hover/tracking:visible group-hover/tracking:translate-x-0 group-hover/tracking:opacity-100">
-                    {trackingItems.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="block rounded-xl px-4 py-3.5 text-[15px] font-medium text-black transition-colors duration-200 hover:bg-[#FFF3F5] hover:text-[#ED002B]"
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
+                  <div className="invisible absolute left-full top-0 ml-3 w-[390px] translate-x-2 rounded-2xl bg-white p-3 opacity-0 shadow-[0_20px_45px_rgba(0,0,0,0.16)] transition-all duration-200 group-hover/tracking:visible group-hover/tracking:translate-x-0 group-hover/tracking:opacity-100">
+                    {trackingItems.map((item) => {
+                      const Icon = item.icon;
+
+                      return (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="group/item flex items-center gap-4 rounded-xl px-4 py-4 text-black transition-colors duration-200 hover:bg-[#FFF3F5]"
+                        >
+                          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-neutral-100 text-black transition-colors duration-200 group-hover/item:bg-white group-hover/item:text-[#ED002B]">
+                            <Icon size={22} strokeWidth={2} />
+                          </div>
+
+                          <div className="min-w-0 flex-1">
+                            <p className="text-[15px] font-semibold transition-colors duration-200 group-hover/item:text-[#ED002B]">
+                              {item.label}
+                            </p>
+
+                            <p className="mt-1 text-[12px] font-normal leading-[1.5] text-neutral-500">
+                              {item.description}
+                            </p>
+                          </div>
+
+                          <ChevronRight
+                            size={18}
+                            className="shrink-0 text-neutral-400 transition-all duration-200 group-hover/item:translate-x-0.5 group-hover/item:text-[#ED002B]"
+                          />
+                        </Link>
+                      );
+                    })}
                   </div>
                 </div>
 

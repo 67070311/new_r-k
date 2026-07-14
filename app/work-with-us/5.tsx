@@ -14,7 +14,7 @@ const contacts = [
   },
   {
     icon: Mail,
-    text: "info@r-ktechnology.com",
+    text: "info@r-ktechnologygps.com",
   },
 ];
 
@@ -27,20 +27,22 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.55, ease: "easeOut" }}
-          className="rounded-2xl bg-neutral-50 p-5 sm:p-6 lg:p-8"
+          className="rounded-2xl bg-neutral-50 p-6 sm:p-7 lg:p-8"
         >
-          <div className="grid items-center gap-5 lg:grid-cols-[1fr_3fr]">
+          <div className="grid items-center gap-8 lg:grid-cols-[1fr_2.8fr]">
+            {/* Left */}
             <div>
-              <h2 className="text-[24px] font-semibold leading-snug text-black sm:text-[28px] lg:text-[32px]">
+              <h2 className="whitespace-nowrap text-[22px] font-semibold leading-tight text-black sm:text-[26px] lg:text-[30px] xl:text-[32px]">
                 สนใจร่วมธุรกิจกับเรา
               </h2>
 
-              <p className="mt-2 text-[15px] font-normal leading-7 text-neutral-800 sm:text-[16px]">
+              <p className="mt-3 whitespace-nowrap text-[15px] leading-7 text-neutral-700">
                 สอบถามข้อมูลเพิ่มเติมได้ที่
               </p>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-3">
+            {/* Right */}
+            <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-[0.9fr_1.45fr_1.65fr]">
               {contacts.map((contact, index) => {
                 const Icon = contact.icon;
 
@@ -55,15 +57,15 @@ export default function ContactSection() {
                       ease: "easeOut",
                       delay: index * 0.08,
                     }}
-                    className="flex items-center gap-4 rounded-xl bg-white px-5 py-5 shadow-sm sm:px-4 lg:px-6"
+                    className="flex items-center gap-4 rounded-xl bg-white px-5 py-5 shadow-sm"
                   >
                     <Icon
                       size={24}
-                      strokeWidth={1.9}
+                      strokeWidth={1.8}
                       className="shrink-0 text-neutral-900"
                     />
 
-                    <p className="text-[14px] font-normal leading-6 text-neutral-900 sm:text-[13px] md:text-[14px] lg:text-[18px]">
+                    <p className="whitespace-nowrap text-[14px] font-medium text-neutral-900 lg:text-[15px] xl:text-[16px]">
                       {contact.text}
                     </p>
                   </motion.div>
