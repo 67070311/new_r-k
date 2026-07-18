@@ -7,6 +7,7 @@ import {
   Phone,
   Smartphone,
 } from "lucide-react";
+import VisitorCounter from "./visitor-counter";
 
 export default function Footer() {
   return (
@@ -156,6 +157,8 @@ export default function Footer() {
             </div>
           </div>
         </div>
+
+        <VisitorCounter />
       </div>
 
       {/* Bottom */}
